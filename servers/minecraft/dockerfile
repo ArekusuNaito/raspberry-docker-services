@@ -1,0 +1,4 @@
+FROM openjdk:8
+COPY . /usr/minecraft
+WORKDIR /usr/minecraft
+CMD ["java","-Xmx2048M","-Xms2048M","-jar","server.jar","-nogui"]
