@@ -1,18 +1,26 @@
 version: '3'
 services:
-    minecraft:
-        build: ./servers/minecraft/
+    # minecraft:
+    #     build: ./servers/minecraft/
+    #     ports:
+    #         - "25565:25565"
+    #     volumes:
+    #         - ./data/minecraft/world:/usr/minecraft/world
+    #     container_name: "minecraft-java-server"
+    #     image: docker.io/argentumknight/minecraft-server:1.0
+    # express:
+    #     # build: ./servers/express/
+    #     ports:
+    #         - "8888:8888"
+    #     volumes:
+    #         - ./data/vault:/app/vault
+    #     container_name: "expressito"
+    #     image: docker.io/argentumknight/express:1.0
+    samba:
+        # docker run  -ti --rm -p 139:139 -p 7777:445 -v C:/dev/docker/raspberry-docker-services/servers/samba/data:/chido samba bash
+        build: ./servers/samba
         ports:
-            - "25565:25565"
-        volumes:
-            - ./data/minecraft/world:/usr/minecraft/world
-        container_name: "minecraft-java-server"
-        image: docker.io/argentumknight/minecraft-server:1.0
-    express:
-        # build: ./servers/express/
-        ports:
-            - "8888:8888"
-        volumes:
-            - ./data/vault:/app/vault
-        container_name: "expressito"
-        image: docker.io/argentumknight/express:1.0
+            - "139:139"
+            - "445:445"
+        volume:
+            - ./data/vault:/chido
