@@ -4,7 +4,7 @@ RUN apt-get update && \
 apt-get install systemctl -y && \
 apt-get install samba -y && \
 systemctl start smbd
-# COPY smb.conf .
+COPY smb.conf .
 EXPOSE 137/udp 138/udp 139 445
 # CMD [ "systemctl","start","smbd"]
 # ENTRYPOINT [ "tail -f /dev/null" ]

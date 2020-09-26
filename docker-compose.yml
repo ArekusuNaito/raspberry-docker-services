@@ -22,5 +22,5 @@ services:
         ports:
             - "139:139"
             - "445:445"
-        volume:
+        volumes:
             - ./data/vault:/chido
