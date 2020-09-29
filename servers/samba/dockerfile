@@ -1,11 +1,14 @@
 FROM ubuntu
 WORKDIR /etc/samba
+# RUN apt-get update && \
+# apt-get install systemctl -y && \
+# apt-get install samba -y && \
+# systemctl enable smbd && \
+# systemctl start smbd
 RUN apt-get update && \
-apt-get install systemctl -y && \
-apt-get install samba -y && \
-systemctl start smbd
+apt-get install samba -y
 COPY smb.conf .
 EXPOSE 137/udp 138/udp 139 445
-# CMD [ "systemctl","start","smbd"]
+ENTRYPOINT [ "service","smbd","start"]
 # ENTRYPOINT [ "tail -f /dev/null" ]
 # ENTRYPOINT systemctl start smbd
