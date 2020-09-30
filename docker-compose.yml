@@ -20,7 +20,7 @@ services:
         # docker run  -ti --rm -p 139:139 -p 7777:445 -v C:/dev/docker/raspberry-docker-services/servers/samba/data:/chido samba bash
         build: ./servers/samba
         ports:
-            - "139:139"
+            # Port 445 is the minimum neccesary file to make it work for windows access as a Network drive
             - "445:445"
         volumes:
-            - ./data/vault:/chido
+            - /storage/usb1:/chido

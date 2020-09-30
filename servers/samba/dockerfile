@@ -1,14 +1,16 @@
 FROM ubuntu
 WORKDIR /etc/samba
-# RUN apt-get update && \
-# apt-get install systemctl -y && \
-# apt-get install samba -y && \
-# systemctl enable smbd && \
-# systemctl start smbd
+
+#This first iteration hardcodes the group&user IDs to 7777
+#Both User and group IDs must match on the host and the container
 RUN apt-get update && \
-apt-get install samba -y
+apt-get install samba -y && \
+groupadd --system -g 7777  sambagroup && \
+useradd  --no-create-home -g 7777 -u 7777 -s /bin/false sambauser
 COPY smb.conf .
-EXPOSE 137/udp 138/udp 139 445
-ENTRYPOINT [ "service","smbd","start"]
-# ENTRYPOINT [ "tail -f /dev/null" ]
-# ENTRYPOINT systemctl start smbd
+#445 is the port for smb windows sharing; this cannot be changed for windows
+EXPOSE 445 
+#By adding tail -f /dev/null; we let the container running indefinitely
+#My googling didn't find a way to just start the daemon and keep the container running without a "trick command"
+ENTRYPOINT service smbd start && tail -f /dev/null
+
