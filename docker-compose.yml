@@ -1,13 +1,13 @@
 version: '3'
 services:
-    # minecraft:
-    #     build: ./servers/minecraft/
-    #     ports:
-    #         - "25565:25565"
-    #     volumes:
-    #         - ./data/minecraft/world:/usr/minecraft/world
-    #     container_name: "minecraft-java-server"
-    #     image: docker.io/argentumknight/minecraft-server:1.0
+    minecraft:
+        build: ./servers/minecraft/
+        ports:
+            - "25565:25565"
+        volumes:
+            - ./servers/minecraft/world:/usr/minecraft/world
+        container_name: "minecraft-java-server"
+        # image: docker.io/argentumknight/minecraft-server:1.0
     # express:
     #     # build: ./servers/express/
     #     ports:
@@ -16,11 +16,15 @@ services:
     #         - ./data/vault:/app/vault
     #     container_name: "expressito"
     #     image: docker.io/argentumknight/express:1.0
-    samba:
+    # samba:
         # docker run  -ti --rm -p 139:139 -p 7777:445 -v C:/dev/docker/raspberry-docker-services/servers/samba/data:/chido samba bash
-        build: ./servers/samba
-        ports:
-            # Port 445 is the minimum neccesary file to make it work for windows access as a Network drive
-            - "445:445"
-        volumes:
-            - /storage/usb1:/chido
+        # build: ./servers/samba
+        # ports:
+        #     # Port 445 is the minimum neccesary file to make it work for windows access as a Network drive
+        #     - "445:445"
+        # volumes:
+        #     - /storage/usb1:/chido
+
+# Notes
+# Just un-comment when you want to add/remove certain services!
+# Services are working!
