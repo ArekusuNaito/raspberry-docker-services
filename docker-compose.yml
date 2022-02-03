@@ -1,21 +1,30 @@
 version: '3'
 services:
-    minecraft:
-        build: ./servers/minecraft/
-        ports:
-            - "25565:25565"
-        volumes:
-            - ./servers/minecraft/world:/usr/minecraft/world
-        container_name: "minecraft-java-server"
+    #minecraft:
+    #    build: ./servers/minecraft/
+    #    restart: always
+    #    ports:
+    #        - "25565:25565"
+    #    volumes:
+    #        - ./servers/minecraft/world:/usr/minecraft/world
+    #    container_name: "minecraft-java-server"
         # image: docker.io/argentumknight/minecraft-server:1.0
+    game-database:
+        build: ./servers/notion-game-database-api/
+        ports:
+            # - "${PORT}:${PORT}"  # I want to set port defined in the env file
+            - ${port}:${port}
+        # volumes:
+        #     - ./data/vault:/app/vault
+        container_name: "game-database"
     # express:
-    #     # build: ./servers/express/
-    #     ports:
-    #         - "8888:8888"
-    #     volumes:
-    #         - ./data/vault:/app/vault
-    #     container_name: "expressito"
-    #     image: docker.io/argentumknight/express:1.0
+        # # build: ./servers/express/
+        # ports:
+        #     - "8888:8888"
+        # volumes:
+        #     - ./data/vault:/app/vault
+        # container_name: "expressito"
+        # image: docker.io/argentumknight/express:1.0
     # samba:
         # docker run  -ti --rm -p 139:139 -p 7777:445 -v C:/dev/docker/raspberry-docker-services/servers/samba/data:/chido samba bash
         # build: ./servers/samba
@@ -24,6 +33,17 @@ services:
         #     - "445:445"
         # volumes:
         #     - /storage/usb1:/chido
+    # shiny-pokemon-bot:
+    #     build: ./servers/shiny-pokemon-discord-bot
+    #     # image: docker.pkg.github.com/arekusunaito/raspberry-docker-services/shiny-pokemon:1.0.1
+    #     restart: always
+    #     env_file:
+    #         - ./.secretMan
+    # mythic-plus: 
+    #     image: docker.pkg.github.com/arekusunaito/raspberry-docker-services/mythic-plus-assembler:1.0.1
+    #     restart: always
+    #     env_file:
+    #         - ./.secretMan
 
 # Notes
 # Just un-comment when you want to add/remove certain services!
