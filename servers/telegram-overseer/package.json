@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "execute": "node ./bin/",
-    "compile": "tsc --watch"
+    "compile": "tsc",
+    "compile-watch": "tsc --watch"
     
   },
   "keywords": [],
